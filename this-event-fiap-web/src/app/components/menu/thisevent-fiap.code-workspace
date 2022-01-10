@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../thisevent-fiap-auth-service"
+		},
+		{
+			"path": "../../../../../this-event-fiap-producer"
+		},
+		{
+			"path": "../../../.."
+		},
+		{
+			"path": "../../../../../thisevent-fiap-worker"
+		}
+	]
+}

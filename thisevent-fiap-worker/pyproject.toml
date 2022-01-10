@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "thisevent-fiap-worker"
+version = "0.1.0"
+description = ""
+authors = ["OscarSilvaOfficial <oscarkaka222@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+celery = "^5.2.1"
+requests = "^2.26.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

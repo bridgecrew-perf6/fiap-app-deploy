@@ -1,0 +1,40 @@
+<mat-toolbar class="mat-elevation-z8">
+  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">
+      menu
+    </mat-icon>
+    <mat-icon *ngIf="sidenav.opened">
+      close
+    </mat-icon>
+  </button>
+  <button mat-icon-button *ngIf="me.name">
+    <mat-icon class="signout-btn" (click)="signout()">logout</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <span *ngIf="me.name">
+      <h4 class="name">{{ me.name }}</h4>
+      <p class="email">{{ me.email }}</p>
+    </span>
+    <span *ngIf="!me.name">
+      <button mat-button class="menu-button" (click)="openDialog()">
+        <mat-icon>person</mat-icon>
+        <span>Login</span>
+      </button>
+    </span>
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button">
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </button>
+    <button mat-button class="menu-button" (click)="openCreateEventDialog()">
+      <mat-icon>event</mat-icon>
+      <span>Marcar Evento</span>
+    </button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

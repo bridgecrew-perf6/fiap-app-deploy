@@ -1,0 +1,76 @@
+
+  
+version: '3.3'
+
+services:
+
+  this_event_fiap_web:
+    build: ./this-event-fiap-web
+    container_name: this_event_fiap_web
+    restart: always
+    depends_on:
+      - this_event_fiap_api
+    ports:
+      - "80:80"
+
+  this_event_fiap_api:
+    depends_on:
+      - db
+    build: ./thisevent-fiap-api
+    container_name: this_event_fiap_api
+    restart: always 
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/property?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: admin
+
+  this_event_fiap_auth_service:
+    build: ./thisevent-fiap-auth-service
+    container_name: this_event_fiap_auth_service
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "5001:5001"
+
+  this_event_fiap_producer:
+    build: ./this-event-fiap-producer
+    container_name: this_event_fiap_producer
+    restart: always
+    depends_on:
+      - rabbit-local
+    ports:
+      - "5002:5002"
+
+  this_event_fiap_worker:
+    build: ./thisevent-fiap-worker
+    container_name: this_event_fiap_worker
+    restart: always
+    environment:
+      - AUTH_URL=http://this_event_fiap_auth_service:5001/api
+    depends_on:
+      - rabbit-local
+    ports:
+      - "5003:5003"
+
+  db:
+    image: mysql:latest
+    container_name: db
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+    ports:
+      - "3306:3306"
+
+  rabbit-local:
+    image: rabbitmq:3.7.15-management
+    container_name: rabbit-local
+    hostname: localhost
+    ports:
+      - 15672:15672
+      - 5672:5672
+
+networks:
+  db_network:

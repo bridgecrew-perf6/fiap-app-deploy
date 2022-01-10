@@ -1,0 +1,15 @@
+<form class="submit-form" #f="ngForm" (ngSubmit)="submitLoginForm(f)">
+  <div class="form__group field">
+    <input type="input" class="form__field" placeholder="Nome" name="name" id='name' ngModel #name="ngModel" required />
+    <label for="name" class="form__label">Nome</label>
+  </div>
+  <div class="form__group field">
+    <input type="input" class="form__field" placeholder="Data" name="date" id='date' ngModel #date="ngModel" required />
+    <label for="date" class="form__label">Data</label>
+  </div>
+  <div class="form__group field">
+    <input type="input" class="form__field" placeholder="Descrição" name="description" id='description' ngModel #description="ngModel" required />
+    <label for="description" class="form__label">Descrição</label>
+  </div>
+  <input type="submit" >
+</form>
