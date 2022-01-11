@@ -5,6 +5,7 @@ version: '3.3'
 services:
 
   this_event_fiap_web:
+    image: oscarsilvaofficial/this-event-fiap-web:latest
     build: ./this-event-fiap-web
     container_name: this_event_fiap_web
     restart: always
@@ -16,6 +17,7 @@ services:
   this_event_fiap_api:
     depends_on:
       - db
+    image: oscarsilvaofficial/thisevent-fiap-api:latest
     build: ./thisevent-fiap-api
     container_name: this_event_fiap_api
     restart: always 
@@ -27,6 +29,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: admin
 
   this_event_fiap_auth_service:
+    image: oscarsilvaofficial/thisevent-fiap-auth-service:latest
     build: ./thisevent-fiap-auth-service
     container_name: this_event_fiap_auth_service
     restart: always
@@ -36,6 +39,7 @@ services:
       - "5001:5001"
 
   this_event_fiap_producer:
+    image: oscarsilvaofficial/this-event-fiap-producer:latest
     build: ./this-event-fiap-producer
     container_name: this_event_fiap_producer
     restart: always
@@ -45,6 +49,7 @@ services:
       - "5002:5002"
 
   this_event_fiap_worker:
+    image: oscarsilvaofficial/thisevent-fiap-worker:latest
     build: ./thisevent-fiap-worker
     container_name: this_event_fiap_worker
     restart: always
