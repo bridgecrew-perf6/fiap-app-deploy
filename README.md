@@ -5,3 +5,7 @@ Para instalar e rodar o projeto em um sistema linux debian, basta rodar o comand
 ```
 ./setup.sh
 ```
+ ou
+```
+sh ./setup.sh
+```
