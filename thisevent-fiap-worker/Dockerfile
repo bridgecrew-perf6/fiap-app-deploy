@@ -1,4 +1,4 @@
-FROM python:3.9.5
+FROM python:3.9.5-alpine
 
 #ENV AUTH_URL=http://thisevent_fiap_auth_service/api
 
